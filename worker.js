@@ -1,5 +1,5 @@
 var Twitter = require('twitter');
-var pg = require('pg');
+const { Client } = require('pg');
 
 console.log("********* Starting *******");
 var tw = new Twitter({
@@ -10,11 +10,12 @@ var tw = new Twitter({
 });
 
 // Connect with SF DB
-const pg = new Client({
+const client = new Client({
   connectionString: process.env.DATABASE_URL,
   ssl: true,
 });
-pg.connect();
+
+client.connect();
 
 tw.stream('statuses/filter', {track: 'RaleighHackDay'}, function(stream) {
   stream.on('data', function(tweet) {
