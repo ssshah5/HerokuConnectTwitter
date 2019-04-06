@@ -1,5 +1,5 @@
 var Twitter = require('twitter');
-var Client = require('pg');
+var pg = require('pg');
 
 console.log("********* Starting *******");
 var tw = new Twitter({
@@ -9,19 +9,27 @@ var tw = new Twitter({
   access_token_secret: process.env.TWITTER_ACCESS_TOKEN_SECRET,
 });
 
-// Connect with SF DB
-var client = new Client({
-  connectionString: process.env.DATABASE_URL,
-  ssl: true,
-});
-
-client.connect();
-
 tw.stream('statuses/filter', {track: 'RaleighHackDay'}, function(stream) {
   stream.on('data', function(tweet) {
     console.log('From: ',tweet.name);
     console.log('Twitter_Name: ',tweet.screen_name);
     console.log('Text: ',tweet.text);
+    // Connect with SF DB
+    pg.connect(process.env.DATABASE_URL+'?ssl=true', function(err, client, done) {
+      client.query('INSERT INTO salesforce.tweet__c (tweet_message__c, name, screen_Name__c) VALUES ($1, $2, $3)',
+      [tweet.text.trim(), tweet.name.trim(), tweet.screen_name.trim()],
+        function(err, result) {
+          done();
+          if (err) {
+            res.status(400).json({error: err.message});
+          }
+          else {
+            // this will still cause jquery to display 'Record updated!'
+            // eventhough it was inserted
+            res.json(result);
+          }
+        });
+    });
   });
   stream.on('error', function(error) {
     console.error(error);
