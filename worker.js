@@ -11,13 +11,14 @@ var tw = new Twitter({
 
 tw.stream('statuses/filter', {track: 'RaleighHackDay'}, function(stream) {
   stream.on('data', function(tweet) {
-    console.log('From: ',tweet.name);
-    console.log('Twitter_Name: ',tweet.screen_name);
+    console.log(tweet);
+    console.log('From:',tweet.user.name);
+    console.log('Twitter_Name: ',tweet.user.screen_name);
     console.log('Text: ',tweet.text);
     // Connect with SF DB
     pg.connect(process.env.DATABASE_URL+'?ssl=true', function(err, client, done) {
       client.query('INSERT INTO salesforce.tweet__c (tweet_message__c, name, screen_Name__c) VALUES ($1, $2, $3)',
-      [tweet.text.trim(), tweet.name.trim(), tweet.screen_name.trim()],
+      [tweet.text.trim(), tweet.user.name.trim(), tweet.user.screen_name.trim()],
         function(err, result) {
           done();
           if (err) {
