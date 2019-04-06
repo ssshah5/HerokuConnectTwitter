@@ -9,9 +9,18 @@ var tw = new Twitter({
   access_token_secret: process.env.TWITTER_ACCESS_TOKEN_SECRET,
 });
 
+// Connect with SF DB
+const pg = new Client({
+  connectionString: process.env.DATABASE_URL,
+  ssl: true,
+});
+pg.connect();
+
 tw.stream('statuses/filter', {track: 'RaleighHackDay'}, function(stream) {
   stream.on('data', function(tweet) {
-    console.log('Tweet: ',tweet);
+    console.log('From: ',tweet.name);
+    console.log('Twitter_Name: ',tweet.screen_name);
+    console.log('Text: ',tweet.text);
   });
   stream.on('error', function(error) {
     console.error(error);
