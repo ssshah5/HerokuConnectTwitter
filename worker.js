@@ -10,7 +10,7 @@ var tw = new Twitter({
 });
 
 // Connect with SF DB
-const client = new Client({
+var client = new Client({
   connectionString: process.env.DATABASE_URL,
   ssl: true,
 });
