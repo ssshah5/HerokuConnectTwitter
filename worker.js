@@ -11,7 +11,6 @@ var tw = new Twitter({
 
 tw.stream('statuses/filter', {track: 'RaleighHackDay'}, function(stream) {
   stream.on('data', function(tweet) {
-    console.log(tweet);
     console.log('From:',tweet.user.name);
     console.log('Twitter_Name: ',tweet.user.screen_name);
     console.log('Text: ',tweet.text);
