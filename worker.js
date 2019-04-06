@@ -1,5 +1,5 @@
 var Twitter = require('twitter');
-const { Client } = require('pg');
+var Client = require('pg');
 
 console.log("********* Starting *******");
 var tw = new Twitter({
