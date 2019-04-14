@@ -1,13 +1,7 @@
 {
-  "name": "Heroku Connect Twitter Demo",
+  "name": "Heroku Connect with Twitter",
   "description": "This sample Node.js app monitors monitors tweets and synchronizes them back to Salesforce with Heroku Connect",
-  "keywords": [
-    "Salesforce",
-    "Heroku"
-  ],
-  "website": "http://developer.salesforce.com/blogs/developer-relations/2015/02/simple-data-integration-heroku-connect.html",
-  "repository": "https://github.com/metadaddy-sfdc/Heroku-Connect-Twitter-Demo",
-  "success_url": "/create",
+  "repository": "https://github.com/ssshah5/Heroku-Connect-Twitter-Demo",
   "env": {
     "TWITTER_CONSUMER_KEY": {
       "description": "Your Twitter app Consumer Key",

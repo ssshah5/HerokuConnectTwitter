@@ -1,13 +1,13 @@
 {
-  "name": "Heroku-Twitter-Sample",
+  "name": "Heroku-Connect-with-Twitter",
   "version": "0.0.1",
   "description": "Subscibe to tweets and write them to Postgres",
   "main": "app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "Pat Patterson",
-  "license": "BSD-3-Clause",
+  "author": "Shrenik Shah",
+  "license": "MIT",
   "dependencies": {
     "twitter": "~1.2.1",
     "pg": "~4.3.0"
