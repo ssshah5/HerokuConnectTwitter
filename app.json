@@ -20,5 +20,11 @@
       "required": true
     }
   },
-  "addons": ["heroku-postgresql", "herokuconnect:demo"]
+  "addons": ["heroku-postgresql", "herokuconnect:demo"],
+  "formation": {
+    "worker": {
+      "quantity": 1,
+      "size": "free"
+    }
+  }
 }
