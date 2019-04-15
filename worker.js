@@ -9,7 +9,7 @@ var tw = new Twitter({
   access_token_secret: process.env.TWITTER_ACCESS_TOKEN_SECRET,
 });
 
-tw.stream('statuses/filter', {track: 'RaleighHackDay'}, function(stream) {
+tw.stream('statuses/filter', {track: 'LPHackathon'}, function(stream) {
   stream.on('data', function(tweet) {
     console.log('From:',tweet.user.name);
     console.log('Twitter_Name: ',tweet.user.screen_name);
